@@ -37,7 +37,8 @@ export default function RangeChart({ rows, targetForceN, unit }: RangeChartProps
           layout="vertical"
           data={displayRows}
           margin={{ top: 10, right: 60, left: 10, bottom: 20 }}
-          onClick={(data) => {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          onClick={(data: any) => {
             if (data?.activePayload?.[0]) {
               const row = data.activePayload[0].payload as ChartRow;
               setSelectedId(prev => prev === row.product.id ? null : row.product.id);
@@ -78,10 +79,11 @@ export default function RangeChart({ rows, targetForceN, unit }: RangeChartProps
             />
           )}
           <Tooltip
-            formatter={(value: number) =>
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            formatter={(value: any) =>
               unit === 'lbf'
-                ? [`${(value * 0.224809).toFixed(3)} lbf`, 'Counter Force']
-                : [`${value.toFixed(2)} N`, 'Counter Force']
+                ? [`${(Number(value) * 0.224809).toFixed(3)} lbf`, 'Counter Force']
+                : [`${Number(value).toFixed(2)} N`, 'Counter Force']
             }
             cursor={{ fill: 'rgba(204,0,0,0.06)' }}
           />

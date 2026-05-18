@@ -37,7 +37,8 @@ export default function CombinationsChart({ combinations, targetForceN, unit }: 
           layout="vertical"
           data={displayCombos}
           margin={{ top: 10, right: 60, left: 10, bottom: 20 }}
-          onClick={(data) => {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          onClick={(data: any) => {
             if (data?.activePayload?.[0]) {
               const combo = data.activePayload[0].payload as Combination;
               setSelectedLabel(prev => prev === combo.label ? null : combo.label);
@@ -78,10 +79,11 @@ export default function CombinationsChart({ combinations, targetForceN, unit }: 
             />
           )}
           <Tooltip
-            formatter={(value: number) =>
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            formatter={(value: any) =>
               unit === 'lbf'
-                ? [`${(value * 0.224809).toFixed(3)} lbf`, 'Total Force']
-                : [`${value.toFixed(2)} N`, 'Total Force']
+                ? [`${(Number(value) * 0.224809).toFixed(3)} lbf`, 'Total Force']
+                : [`${Number(value).toFixed(2)} N`, 'Total Force']
             }
             cursor={{ fill: 'rgba(204,0,0,0.06)' }}
           />
