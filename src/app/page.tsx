@@ -1,5 +1,5 @@
 'use client';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import Header from '@/components/Header';
 import SpaceHero from '@/components/SpaceHero';
 import ForceInput from '@/components/ForceInput';
@@ -25,6 +25,19 @@ export default function Page() {
   const combinations = useMemo(() => buildCombinations(PRODUCTS, targetForceN), [targetForceN]);
 
   const showCombinations = targetForceN > MAX_SINGLE_N;
+
+  useEffect(() => {
+    const sendHeight = () => {
+      window.parent.postMessage(
+        { type: 'npa-calc-height', height: document.documentElement.scrollHeight },
+        '*'
+      );
+    };
+    sendHeight();
+    const observer = new ResizeObserver(sendHeight);
+    observer.observe(document.documentElement);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <main className="min-h-screen bg-gray-50">
