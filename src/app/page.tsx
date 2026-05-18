@@ -1,6 +1,7 @@
 'use client';
 import { useState, useMemo } from 'react';
 import Header from '@/components/Header';
+import SpaceHero from '@/components/SpaceHero';
 import ForceInput from '@/components/ForceInput';
 import RangeChart from '@/components/RangeChart';
 import CombinationsChart from '@/components/CombinationsChart';
@@ -28,6 +29,7 @@ export default function Page() {
   return (
     <main className="min-h-screen bg-gray-50">
       <Header />
+      <SpaceHero />
       <ForceInput
         value={inputValue}
         unit={unit}

@@ -11,10 +11,14 @@ interface ForceInputProps {
 export default function ForceInput({ value, unit, onChange, onUnitChange }: ForceInputProps) {
   return (
     <div className="flex flex-col items-center gap-3 py-10 bg-white">
+      <h2 className="text-4xl font-extrabold text-gray-900 tracking-tight mb-2">
+        Counterbalance Selection Calculator
+      </h2>
       <label className="text-sm font-medium text-gray-500 uppercase tracking-widest">
         Required Counterbalance Force
       </label>
       <div className="flex items-center gap-3">
+        <span className="text-5xl font-extrabold text-gray-300 tracking-tight select-none">ENTER</span>
         <input
           type="number"
           min="0"
